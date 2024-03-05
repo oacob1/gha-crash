@@ -6,10 +6,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo a string
-        run: echo "hw"
+        run: echo "hello world"
       - name: multiline commands
         run: |
           node -v
           npm -v
+  parallel-job-macos:
+    runs-on: macos-latest
+    steps:
+      - name: View SW version
+        run: sw_vers
+  dependent-job:
+    runs-on: windows-lateset
+    needs: [run-shell-command]
+    steps:
+      - name: echo string
+        run: Write-Output "Windows String"
+      - name: Error steps
+        run: doesnotexist
 
 
